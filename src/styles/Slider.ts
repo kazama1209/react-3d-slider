@@ -87,7 +87,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
     border: 0;
     border-radius: ${isNext ? "0.5vw 0 0 0.5vw" : "0 0.5vw 0.5vw 0"};
     top: 0;
-    ${isNext ? "right: 0;" : "left: 0;"};
     width: 100%;
     height: 100%;
     color: ${colorCodes.SNOW};
