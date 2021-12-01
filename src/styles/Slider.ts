@@ -55,7 +55,7 @@ export const StyledSlideImage = styled.img`
 `;
 
 export const StyledSlideCaption = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.3vw;
   color: ${colorCodes.SNOW};
   padding: 0 1rem;
 `;
