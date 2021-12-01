@@ -8,7 +8,7 @@ export const StyledSliderWrapper = styled.div`
   height: 100%;
 
   .slick-dots {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     position: static;
 
     li button:before {
@@ -23,7 +23,7 @@ export const StyledSliderWrapper = styled.div`
 
 export const StyledSlider = styled(Slider)`
   background-color: ${colorCodes.BLACK};
-  padding: 3rem 0 2.5rem;
+  padding: 3rem;
 `;
 
 export const StyledSlideMask = styled.div`
