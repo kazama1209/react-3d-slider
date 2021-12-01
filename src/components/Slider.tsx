@@ -16,8 +16,6 @@ import {
 
 import { Image } from "interfaces";
 
-import styled from "styled-components";
-
 interface ArrowProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
