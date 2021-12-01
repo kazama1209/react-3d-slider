@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Slider from "./components/Slider";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Image } from "interfaces";
+
+const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [images, setImages] = useState<Image[]>([]);
+
+  /* 画像データは Pixabay API 経由で取得（無料で高画質な写真を提供してくれるサービス） */
+  const fetchImages = async () => {
+    const baseUrl = "https://pixabay.com/api/";
+
+    const perPage = 20; /* 1ページあたりの取得件数 */
+    const key =
+      process.env.REACT_APP_PIXABAY_API_KEY || ""; /* Pixabay APIキー */
+
+    const query = new URLSearchParams({
+      per_page: perPage.toString(),
+      key: key,
+    }); /* クエリパラメータを作成 */
+
+    const res = await (await fetch(`${baseUrl}?${query}`)).json();
+
+    setImages(res.hits);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
+  /* ローディング中の処理 */
+  if (isLoading) return <div>Now Loading...</div>;
+
+  return <Slider images={images} />;
+};
 
 export default App;
