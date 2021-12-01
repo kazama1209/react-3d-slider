@@ -16,6 +16,8 @@ import {
 
 import { Image } from "interfaces";
 
+import styled from "styled-components";
+
 interface ArrowProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
@@ -43,7 +45,6 @@ const NextArrow: React.FC<ArrowProps> = ({ onClick }) => {
 interface SliderProps {
   images: Image[];
 }
-
 const Slider: React.FC<SliderProps> = ({ images }) => {
   const [imageIndex, setImageIndex] = useState<number>(0);
 
@@ -60,6 +61,7 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
     nextArrow: <NextArrow />,
     // @ts-ignore
     beforeChange: (current, next) => setImageIndex(next),
+    dots: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -80,6 +82,8 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          prevArrow: null,
+          nextArrow: null,
         },
       },
     ],

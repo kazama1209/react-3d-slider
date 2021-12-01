@@ -6,11 +6,24 @@ import * as colorCodes from "constants/colorCodes";
 export const StyledSliderWrapper = styled.div`
   margin: 0 auto;
   height: 100%;
+
+  .slick-dots {
+    margin-top: 1.5rem;
+    position: static;
+
+    li button:before {
+      color: ${colorCodes.SNOW};
+    }
+
+    li.slick-active button:before {
+      color: ${colorCodes.SNOW};
+    }
+  }
 `;
 
 export const StyledSlider = styled(Slider)`
   background-color: ${colorCodes.BLACK};
-  padding: 3rem;
+  padding: 3rem 0 2.5rem;
 `;
 
 export const StyledSlideMask = styled.div`
