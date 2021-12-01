@@ -11,7 +11,7 @@ const App: React.FC = () => {
   const fetchImages = async () => {
     const baseUrl = "https://pixabay.com/api/";
 
-    const perPage = 20; /* 1ページあたりの取得件数 */
+    const perPage = 5; /* 1ページあたりの取得件数 */
     const key =
       process.env.REACT_APP_PIXABAY_API_KEY || ""; /* Pixabay APIキー */
 
