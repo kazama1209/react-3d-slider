@@ -20,6 +20,7 @@ interface ArrowProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
+/* prev ボタン*/
 const PrevArrow: React.FC<ArrowProps> = ({ onClick }) => {
   return (
     <StyledButtonWrapper>
@@ -28,6 +29,7 @@ const PrevArrow: React.FC<ArrowProps> = ({ onClick }) => {
   );
 };
 
+/* next ボタン*/
 const NextArrow: React.FC<ArrowProps> = ({ onClick }) => {
   return (
     <StyledButtonWrapper isNext={true}>

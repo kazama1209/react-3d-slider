@@ -90,7 +90,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
     ${isNext ? "right: 0;" : "left: 0;"};
     width: 100%;
     height: 100%;
-    color: #fff;
+    color: ${colorCodes.SNOW};
     font-size: 3rem;
     font-weight: 800;
     cursor: pointer;
