@@ -15,12 +15,12 @@ const App: React.FC = () => {
     const key =
       process.env.REACT_APP_PIXABAY_API_KEY || ""; /* Pixabay APIキー */
 
-    const query = new URLSearchParams({
+    const queryParams = new URLSearchParams({
       per_page: perPage.toString(),
       key: key,
     }); /* クエリパラメータを作成 */
 
-    const res = await (await fetch(`${baseUrl}?${query}`)).json();
+    const res = await (await fetch(`${baseUrl}?${queryParams}`)).json();
 
     setImages(res.hits);
     setIsLoading(false);
