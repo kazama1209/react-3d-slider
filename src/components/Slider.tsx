@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useMediaQuery } from "react-responsive";
+
+import { default as SlickSlider } from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -62,34 +64,35 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
   });
 
   const [imageIndex, setImageIndex] = useState<number>(0);
-
-  const [mainSlider, setMainSlider] = useState(null);
-  const [thumbSlider, setThumbSlider] = useState(null);
-
-  const [mainSlide, setMainSlide] = useState(null);
-  const [thumbSlide, setThumbSlide] = useState(null);
+  const [navs, setNavs] = useState({ mainNav: undefined, thumbNav: undefined });
+  const mainSlider = useRef();
+  const thumbSlider = useRef();
 
   useEffect(() => {
-    setMainSlider(mainSlide);
-    setThumbSlider(thumbSlide);
-  }, [mainSlide, thumbSlide]);
+    setNavs({
+      mainNav: mainSlider.current,
+      thumbNav: thumbSlider.current,
+    });
+  }, []);
+
+  const { mainNav, thumbNav } = navs;
 
   const settingsMain = {
     infinite: true,
-    lazyLoad: true,
+    lazyLoad: "progressive",
     speed: 300,
     slidesToShow: 3,
     slidesToScroll: 3,
     autoplay: true,
     autoplaySpeed: 5000,
     centerMode: true,
-    centerPadding: 0,
+    centerPadding: "0",
     swipeToSlide: true,
     focusOnSelect: true,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-    // @ts-ignore
-    beforeChange: (_, next) => setImageIndex(next),
+
+    beforeChange: (_: SlickSlider, next: number) => setImageIndex(next),
     responsive: [
       {
         breakpoint: 600,
@@ -106,14 +109,13 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
 
   const settingsThumbs = {
     infinite: true,
-    lazyLoad: true,
+    lazyLoad: "progressive",
     slidesToShow: 5,
     centerMode: true,
     centerPadding: "10%",
     swipeToSlide: true,
     focusOnSelect: true,
-    // @ts-ignore
-    beforeChange: (_, next) => setImageIndex(next),
+    beforeChange: (_: SlickSlider, next: number) => setImageIndex(next),
   };
 
   return (
@@ -121,10 +123,9 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
       {/* @ts-ignore */}
       <StyledMainSlider
         {...settingsMain}
+        asNavFor={thumbNav}
         /* @ts-ignore */
-        asNavFor={thumbSlider}
-        /* @ts-ignore */
-        ref={(mainSlide) => setMainSlide(mainSlide)}
+        ref={(slider) => (mainSlider.current = slider)}
       >
         {images.map((image, index) => (
           <StyledMainSlide
@@ -144,12 +145,12 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
         ))}
       </StyledMainSlider>
       {!isMobileScreen && ( // スマホサイズの画面では非表示
+        /* @ts-ignore */
         <StyledThumbnailSlider
           {...settingsThumbs}
+          asNavFor={mainNav}
           /* @ts-ignore */
-          asNavFor={mainSlider}
-          /* @ts-ignore */
-          ref={(thumbSlide) => setThumbSlide(thumbSlide)}
+          ref={(slider) => (thumbSlider.current = slider)}
         >
           {images.map((image, index) => (
             <StyledThumbnailSlide
