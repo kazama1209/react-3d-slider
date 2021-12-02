@@ -6,9 +6,9 @@ import * as colorCodes from "constants/colorCodes";
 export const StyledSliderWrapper = styled.div`
   margin: 0 auto;
   height: 100%;
+  background-color: ${colorCodes.BLACK};
 
   .slick-dots {
-    margin-top: 2rem;
     position: static;
 
     li button:before {
@@ -21,12 +21,11 @@ export const StyledSliderWrapper = styled.div`
   }
 `;
 
-export const StyledSlider = styled(Slider)`
-  background-color: ${colorCodes.BLACK};
+export const StyledMainSlider = styled(Slider)`
   padding: 3rem;
 `;
 
-export const StyledSlideMask = styled.div`
+export const StyledMainSlideMask = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,7 +40,7 @@ export const StyledSlideMask = styled.div`
   opacity: 0;
 `;
 
-export const StyledSlide = styled.div.attrs((props) => ({
+export const StyledMainSlide = styled.div.attrs((props) => ({
   className: props.className,
 }))`
   transform: scale(0.4);
@@ -55,29 +54,29 @@ export const StyledSlide = styled.div.attrs((props) => ({
     opacity: 1;
   }
 
-  &.is-active ${StyledSlideMask} {
+  &.is-active ${StyledMainSlideMask} {
     opacity: 1;
   }
 `;
 
-export const StyledSlideImage = styled.img`
+export const StyledMainSlideImage = styled.img`
   width: 100%;
   border-radius: 0.5vw;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 `;
 
-export const StyledSlideCaption = styled.div`
+export const StyledMainSlideCaption = styled.div`
   font-size: 1.3vw;
   color: ${colorCodes.SNOW};
   padding: 0 1rem;
 `;
 
-interface StyledButtonWrapperProps {
+interface ArrowButtonProps {
   isNext?: boolean;
 }
 
-export const StyledButtonWrapper = styled.div<StyledButtonWrapperProps>`
+export const StyledArrowButtonWrapper = styled.div<ArrowButtonProps>`
   ${({ isNext = false }) => `
     position: absolute;
     border-radius: ${isNext ? "0.5vw 0 0 0.5vw" : "0 0.5vw 0.5vw 0"};
@@ -89,11 +88,7 @@ export const StyledButtonWrapper = styled.div<StyledButtonWrapperProps>`
   `}
 `;
 
-interface StyledButtonProps {
-  isNext?: boolean;
-}
-
-export const StyledButton = styled.button<StyledButtonProps>`
+export const StyledArrowButton = styled.button<ArrowButtonProps>`
   ${({ isNext = false }) => `
     display: block;
     background: transparent;
@@ -114,4 +109,24 @@ export const StyledButton = styled.button<StyledButtonProps>`
       opacity: 0.5;
     }
   `}
+`;
+
+export const StyledThumbnailSlider = styled(Slider)`
+  padding: 0;
+`;
+
+export const StyledThumbnailSlide = styled.div.attrs((props) => ({
+  className: props.className,
+}))`
+  transition: transform 300ms;
+  filter: brightness(0.5);
+
+  &.is-active {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+`;
+
+export const StyledThumbnailSlideImage = styled.img`
+  width: 100%;
 `;
