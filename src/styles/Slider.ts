@@ -48,6 +48,7 @@ export const StyledMainSlide = styled.div.attrs((props) => ({
   opacity: 0.5;
   border-radius: 0.5vw;
   position: relative;
+  cursor: pointer;
 
   &.is-active {
     transform: scale(1);
@@ -118,6 +119,7 @@ export const StyledThumbnailSlider = styled(Slider)`
 export const StyledThumbnailSlide = styled.div.attrs((props) => ({
   className: props.className,
 }))`
+  cursor: pointer;
   transition: transform 300ms;
   filter: brightness(0.5);
 
